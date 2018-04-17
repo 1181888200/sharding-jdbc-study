@@ -1,6 +1,20 @@
 spring-boot 结合当当网sharding-jdbc 实现分库分表功能
 
+项目导入
+	1. eclipse、maven 导入pom
+	2. 创建数据库sharding_0、sharding_1
+	3. 初始化数据库：spring-boot-sharding-jdbc\src\main\resources\db 目录下执行sql文件导入数据库
+
 功能实现说明
+	
+	单库操作：
+		1. 插入数据时，多张表同时写入
+		2. 插入数据时，固定格式写入巩固表中 ——————————> 参考 Order 实现
+	
+	多库操作：
+		1. 插入数据时，多库中多个表同时写入  ——————————> 参考 User 、Student 实现
+		2. 插入数据时，多库中固定格式同时写入多个巩固表中
+		3. 插入数据时，多库中固定格式只写入一张表中
 	
 	1. Order  模拟订单功能
 		实现单库  分表，数据根据ID落入对应的表中
