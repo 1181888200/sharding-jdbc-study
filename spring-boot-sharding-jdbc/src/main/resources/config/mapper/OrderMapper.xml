@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >  
+<mapper namespace="com.lwl.boot.sharding.jdbc.mapper.OrderMapper" >  
+  <resultMap id="resultMap" type="com.lwl.boot.sharding.jdbc.entity.Order" >  
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />  
+    <result column="user_id" property="userId" jdbcType="INTEGER" />  
+  </resultMap>  
+    
+  <sql id="columnsName">  
+     order_id,user_id  
+  </sql>  
+    
+  <insert id="insert">  
+    insert into t_order (order_id,user_id) values (#{orderId},#{userId})  
+  </insert>  
+    
+  <select id="find" resultMap="resultMap">  
+   select <include refid="columnsName"/> from t_order  
+  </select>  
+    
+  <select id="findById" resultMap="resultMap">  
+    select <include refid="columnsName"/> from t_order where order_id  = #{orderId}
+      
+  </select>  
+    
+    
+</mapper>  

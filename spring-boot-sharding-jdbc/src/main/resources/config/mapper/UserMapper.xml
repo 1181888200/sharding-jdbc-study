@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >  
+<mapper namespace="com.lwl.boot.sharding.jdbc.mapper.UserMapper" >  
+  <resultMap id="resultMap" type="com.lwl.boot.sharding.jdbc.entity.User" >  
+    <id column="id" property="id" jdbcType="INTEGER" />  
+    <result column="user_id" property="userId" jdbcType="INTEGER" />  
+    <result column="name" property="name" jdbcType="VARCHAR" />  
+    <result column="age" property="age" jdbcType="INTEGER" />  
+  </resultMap>  
+    
+  <insert id="insert">  
+    insert into t_user (user_id,name,age) values (#{userId},#{name},#{age})  
+  </insert>  
+    
+  <select id="findAll" resultMap="resultMap">  
+   select <include refid="columnsName"/> from t_user   
+  </select>  
+    
+  <select id="findByUserIds" resultMap="resultMap">  
+    select <include refid="columnsName"/> from t_user where user_id in (  
+     <foreach collection="list" item="item" separator=",">  
+        #{item}  
+     </foreach>  
+    )  
+      
+  </select>  
+    
+  <sql id="columnsName">  
+     id,user_id,name,age  
+  </sql>  
+    
+     
+    
+</mapper>  

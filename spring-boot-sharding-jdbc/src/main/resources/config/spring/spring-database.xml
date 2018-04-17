@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"  
+    xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"  
+    xmlns:tx="http://www.springframework.org/schema/tx"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd  
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd  
+        http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd  
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">  
+          
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+        <property name="locations">  
+            <list>  
+                <value>classpath*:config/resource/jdbc_dev.properties</value>  
+            </list>  
+        </property>  
+    </bean>  
+          
+    <bean name="sharding_0" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">  
+        <property name="url" value="${jdbc_url0}" />  
+        <property name="username" value="${jdbc_username0}" />  
+        <property name="password" value="${jdbc_password0}" />  
+        <property name="driverClassName" value="${jdbc_driver0}" />  
+        <!-- 初始化连接大小 -->  
+        <property name="initialSize" value="0" />  
+        <!-- 连接池最大使用连接数量 -->  
+        <property name="maxActive" value="20" />  
+        <!-- 连接池最小空闲 -->  
+        <property name="minIdle" value="0" />  
+        <!-- 获取连接最大等待时间 -->  
+        <property name="maxWait" value="60000" />  
+        <property name="validationQuery" value="${validationQuery}" />  
+        <property name="testOnBorrow" value="false" />  
+        <property name="testOnReturn" value="false" />  
+        <property name="testWhileIdle" value="true" />  
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->  
+        <property name="timeBetweenEvictionRunsMillis" value="60000" />  
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->  
+        <property name="minEvictableIdleTimeMillis" value="25200000" />  
+        <!-- 打开removeAbandoned功能 -->  
+        <property name="removeAbandoned" value="true" />  
+        <!-- 1800秒，也就是30分钟 -->  
+        <property name="removeAbandonedTimeout" value="1800" />  
+        <!-- 关闭abanded连接时输出错误日志 -->  
+        <property name="logAbandoned" value="true" />  
+        <property name="filters" value="stat" />  
+    </bean>  
+      
+    <bean name="sharding_1" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">  
+        <property name="url" value="${jdbc_url1}" />  
+        <property name="username" value="${jdbc_username1}" />  
+        <property name="password" value="${jdbc_password1}" />  
+        <property name="driverClassName" value="${jdbc_driver1}" />  
+        <!-- 初始化连接大小 -->  
+        <property name="initialSize" value="0" />  
+        <!-- 连接池最大使用连接数量 -->  
+        <property name="maxActive" value="20" />  
+        <!-- 连接池最小空闲 -->  
+        <property name="minIdle" value="0" />  
+        <!-- 获取连接最大等待时间 -->  
+        <property name="maxWait" value="60000" />  
+        <property name="validationQuery" value="${validationQuery}" />  
+        <property name="testOnBorrow" value="false" />  
+        <property name="testOnReturn" value="false" />  
+        <property name="testWhileIdle" value="true" />  
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->  
+        <property name="timeBetweenEvictionRunsMillis" value="60000" />  
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->  
+        <property name="minEvictableIdleTimeMillis" value="25200000" />  
+        <!-- 打开removeAbandoned功能 -->  
+        <property name="removeAbandoned" value="true" />  
+        <!-- 1800秒，也就是30分钟 -->  
+        <property name="removeAbandonedTimeout" value="1800" />  
+        <!-- 关闭abanded连接时输出错误日志 -->  
+        <property name="logAbandoned" value="true" />  
+        <property name="filters" value="stat" />  
+    </bean>  
+      
+  
+</beans>  
