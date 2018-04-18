@@ -9,8 +9,8 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @ImportResource(locations={ "classpath*:config/spring/spring-database.xml", 
-							"classpath*:config/spring/spring-sharding.xml", 
-						})
+							"classpath*:config/spring/spring-sharding.xml"
+				})
 @MapperScan("com.lwl.boot.sharding.jdbc.mapper")
 @EnableTransactionManagement
 @SpringBootApplication(exclude={DataSourceAutoConfiguration.class,HibernateJpaAutoConfiguration.class})
