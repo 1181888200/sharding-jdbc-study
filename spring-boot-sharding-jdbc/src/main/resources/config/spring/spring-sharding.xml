@@ -102,37 +102,38 @@
       
       
       
-    <!-- 单张库  分表 start-->      
+    <!-- 单张库  分表 start--> 
+    <import resource="classpath:config/spring/spring-sharding-order.xml"/>     
   	<!-- 配置好dataSourceRulue,即对数据源进行管理 -->  
-    <bean id="dataSourceRuleTable" class="com.dangdang.ddframe.rdb.sharding.api.rule.DataSourceRule">  
-        <constructor-arg>  
-            <map>  
-                <entry key="sharding_0" value-ref="sharding_0"/>  
-            </map>  
-        </constructor-arg>  
-    </bean>  
+<!--     <bean id="dataSourceRuleTable" class="com.dangdang.ddframe.rdb.sharding.api.rule.DataSourceRule">   -->
+<!--         <constructor-arg>   -->
+<!--             <map>   -->
+<!--                 <entry key="sharding_0" value-ref="sharding_0"/>   -->
+<!--             </map>   -->
+<!--         </constructor-arg>   -->
+<!--     </bean>   -->
          
       <!-- 对t_order表的配置，进行分库配置，逻辑表名为t_order，库有实际的三张表 -->  
-    <bean id="orderTableRuleTable" class="com.dangdang.ddframe.rdb.sharding.api.rule.TableRule">  
-        <constructor-arg value="t_order" index="0"/>  
-        <constructor-arg index="1">  
-            <list>  
-                <value>t_order_0</value>  
-                <value>t_order_1</value>  
-                <value>t_order_2</value>  
-            </list>  
-        </constructor-arg>  
-        <constructor-arg index="2" ref="dataSourceRuleTable"/>  
-        <constructor-arg index="3" ref="orderTableShardingStrategy"/>  
-    </bean>  
+<!--     <bean id="orderTableRuleTable" class="com.dangdang.ddframe.rdb.sharding.api.rule.TableRule">   -->
+<!--         <constructor-arg value="t_order" index="0"/>   -->
+<!--         <constructor-arg index="1">   -->
+<!--             <list>   -->
+<!--                 <value>t_order_0</value>   -->
+<!--                 <value>t_order_1</value>   -->
+<!--                 <value>t_order_2</value>   -->
+<!--             </list>   -->
+<!--         </constructor-arg>   -->
+<!--         <constructor-arg index="2" ref="dataSourceRuleTable"/>   -->
+<!--         <constructor-arg index="3" ref="orderTableShardingStrategy"/>   -->
+<!--     </bean>   -->
       
     <!-- t_order 分表策略 -->  
-    <bean id="orderTableShardingStrategy" class="com.dangdang.ddframe.rdb.sharding.api.strategy.table.TableShardingStrategy">  
-        <constructor-arg index="0" value="order_id"/>  
-        <constructor-arg index="1">  
-            <bean class="com.lwl.boot.sharding.jdbc.algorithm.OrderSingleKeyTableShardingAlgorithm" />  
-        </constructor-arg>  
-    </bean>  
+<!--     <bean id="orderTableShardingStrategy" class="com.dangdang.ddframe.rdb.sharding.api.strategy.table.TableShardingStrategy">   -->
+<!--         <constructor-arg index="0" value="order_id"/>   -->
+<!--         <constructor-arg index="1">   -->
+<!--             <bean class="com.lwl.boot.sharding.jdbc.algorithm.OrderSingleKeyTableShardingAlgorithm" />   -->
+<!--         </constructor-arg>   -->
+<!--     </bean>   -->
      <!-- 单张库  分表  end-->     
       
       

@@ -43,28 +43,6 @@
         </constructor-arg>  
     </bean>  
       
-    <!-- 构成分库分表的规则 传入数据源集合和每个表的分库分表的具体规则 -->  
-    <bean id="shardingRuleTable" class="com.dangdang.ddframe.rdb.sharding.api.rule.ShardingRule">  
-        <constructor-arg index="0" ref="dataSourceRuleTable"/>  
-        <constructor-arg index="1">  
-            <list>  
-                <ref bean="orderTableRuleTable"/>  
-            </list>  
-        </constructor-arg>  
-    </bean>  
-      
-    <!-- 对datasource进行封装 -->  
-    <bean id="shardingDataSourceTable" class="com.dangdang.ddframe.rdb.sharding.api.ShardingDataSource">  
-        <constructor-arg ref="shardingRuleTable"/>  
-    </bean>  
-  
-    <!-- 事务 -->  
-    <bean id="transactionManagerTable"  
-          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  
-        <property name="dataSource" ref="shardingDataSourceTable" />  
-    </bean>  
-  
-    <tx:annotation-driven transaction-manager="transactionManagerTable" />  
           
   
 </beans>  
