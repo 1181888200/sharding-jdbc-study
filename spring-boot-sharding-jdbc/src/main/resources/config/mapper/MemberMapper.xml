@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >  
+<mapper namespace="com.lwl.boot.sharding.jdbc.mapper.MemberMapper" >  
+  <resultMap id="resultMap" type="com.lwl.boot.sharding.jdbc.entity.Member" >  
+    <result column="id" property="id" jdbcType="VARCHAR" />  
+    <result column="name" property="name" jdbcType="VARCHAR" />  
+    <result column="strategy" property="strategy" jdbcType="INTEGER" />  
+    <result column="card" property="card" jdbcType="VARCHAR" />  
+  </resultMap>  
+    
+  <sql id="columnsName">  
+     ID,NAME,STRATEGY,  CARD
+  </sql>  
+    
+  <insert id="insert">  
+    insert into t_member (ID,NAME,STRATEGY,  CARD) values (#{id},#{name},#{strategy},#{card})  
+  </insert>  
+    
+  <select id="findAll" resultMap="resultMap">  
+   select <include refid="columnsName"/> from t_member  
+  </select>  
+    
+  <select id="findById" resultMap="resultMap">  
+    select <include refid="columnsName"/> from t_member where id  = #{id}
+  </select>  
+    
+    
+  <delete id="delById" >  
+    delete  from t_member where id  = #{id}
+  </delete>  
+    
+   <update id="upd">
+   		update t_member set NAME = #{name} ,CARD = #{card} where id  = #{id}
+   </update>
+    
+</mapper>  
