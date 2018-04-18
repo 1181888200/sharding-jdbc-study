@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >  
+<mapper namespace="com.lwl.boot.sharding.jdbc.mapper.TradeRecordMapper" >  
+  <resultMap id="resultMap" type="com.lwl.boot.sharding.jdbc.entity.TradeRecord" >  
+    <result column="id" property="id" jdbcType="VARCHAR" />  
+    <result column="name" property="name" jdbcType="VARCHAR" />  
+    <result column="tradeId" property="tradeId" jdbcType="INTEGER" />  
+  </resultMap>  
+    
+  <sql id="columnsName">  
+     ID,NAME,tradeId
+  </sql>  
+    
+  <insert id="add">  
+    insert into t_trade_record (ID,NAME,tradeId) values (#{id},#{name},#{tradeId})  
+  </insert>  
+    
+  <select id="findAll" resultMap="resultMap">  
+   select <include refid="columnsName"/> from t_trade_record  
+  </select>  
+    
+  <select id="findById" resultMap="resultMap">  
+    select <include refid="columnsName"/> from t_trade_record where id  = #{id}
+  </select>  
+    
+    
+  <delete id="del" >  
+    delete  from t_trade_record where id  = #{id}
+  </delete>  
+    
+    
+</mapper>  

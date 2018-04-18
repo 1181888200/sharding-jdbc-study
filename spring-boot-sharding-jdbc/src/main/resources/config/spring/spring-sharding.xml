@@ -106,6 +106,9 @@
     <import resource="classpath:config/spring/spring-sharding-order.xml"/>     
     <import resource="classpath:config/spring/spring-sharding-member.xml"/>     
      <!-- 单张库  分表  end-->     
+     <!-- 多库  分表  start-->     
+    <import resource="classpath:config/spring/spring-sharding-tradeRecord.xml"/>     
+     <!-- 多库  分表  end-->     
       
       
       
@@ -118,6 +121,7 @@
                 <ref bean="studentTableRule"/>  
                 <ref bean="orderTableRuleTable"/>  
                 <ref bean="memberTableRule"/>  
+                <ref bean="tradeRecordTableRule"/>  
             </list>  
         </constructor-arg>  
     </bean>  

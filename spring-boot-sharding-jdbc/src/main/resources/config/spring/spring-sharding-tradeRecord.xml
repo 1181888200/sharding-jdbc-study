@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"  
+    xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"  
+    xmlns:tx="http://www.springframework.org/schema/tx"  
+    xmlns:rdb="http://www.dangdang.com/schema/ddframe/rdb"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd  
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd  
+        http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd  
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+        http://www.dangdang.com/schema/ddframe/rdb http://www.dangdang.com/schema/ddframe/rdb/rdb.xsd">  
+          
+      
+         
+      <!-- 对t_trade_record表的配置，进行分库配置，逻辑表名为t_trade_record，库有实际的三张表 -->  
+    <bean id="tradeRecordTableRule" class="com.dangdang.ddframe.rdb.sharding.api.rule.TableRule">  
+        <constructor-arg value="t_trade_record" index="0"/>  
+        <constructor-arg index="1">  
+            <list>  
+                <value>t_trade_record_0</value>  
+                <value>t_trade_record_1</value>  
+                <value>t_trade_record_2</value>  
+            </list>  
+        </constructor-arg>  
+        <constructor-arg index="2" ref="dataSourceRule"/>  
+        <constructor-arg index="3" ref="tradeRecordDatabaseShardingStrategy"/>  
+        <constructor-arg index="4" ref="tradeRecordTableShardingStrategy"/>  
+    </bean>  
+     
+     <!-- t_trade_record 分库策略 -->  
+    <bean id="tradeRecordDatabaseShardingStrategy" class="com.dangdang.ddframe.rdb.sharding.api.strategy.database.DatabaseShardingStrategy">  
+        <constructor-arg index="0" value="tradeId"/>  
+        <constructor-arg index="1">  
+            <bean class="com.lwl.boot.sharding.jdbc.algorithm.TradeRecordSingleKeyDatabaseShardingAlgorithm" />  
+        </constructor-arg>  
+    </bean>   
+      
+    <!-- t_trade_record 分表策略 -->  
+    <bean id="tradeRecordTableShardingStrategy" class="com.dangdang.ddframe.rdb.sharding.api.strategy.table.TableShardingStrategy">  
+        <constructor-arg index="0" value="tradeId"/>  
+        <constructor-arg index="1">  
+            <bean class="com.lwl.boot.sharding.jdbc.algorithm.TradeRecordSingleKeyTableShardingAlgorithm" />  
+        </constructor-arg>  
+    </bean>  
+      
+          
+  
+</beans>  
