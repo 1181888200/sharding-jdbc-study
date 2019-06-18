@@ -37,7 +37,7 @@
       
     <!-- t_member 分表策略 -->  
     <bean id="memberTableShardingStrategy" class="com.dangdang.ddframe.rdb.sharding.api.strategy.table.TableShardingStrategy">  
-        <constructor-arg index="0" value="strategy"/>  
+        <constructor-arg index="0" value="STRATEGY"/>  
         <constructor-arg index="1">  
             <bean class="com.lwl.boot.sharding.jdbc.algorithm.MemberSingleKeyTableShardingAlgorithm" />  
         </constructor-arg>  
